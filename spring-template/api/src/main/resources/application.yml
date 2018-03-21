@@ -1,0 +1,48 @@
+multipart:
+    maxFileSize: 50Mb
+    maxRequestSize: 60Mb
+logging:
+    level: debug
+
+spring:
+    datasource:
+        name: recognition
+        url: jdbc:mysql://localhost:3306/casejoin?useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 100
+        initialSize: 20
+        maxWait: 60000
+        minIdle: 20
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+    freemarker:
+        allow-request-override: false
+        cache: true
+        check-template-location: true
+        charset: UTF-8
+        content-type: text/html
+        expose-request-attributes: false
+        expose-session-attributes: false
+        expose-spring-macro-helpers: false
+        template-loader-path: classpath:/templates
+    messages: 
+        basename: i18n/messages
+
+server:
+    context-path: /
+    port: 8888
+    compression:
+        enabled: true
+        mime-types: text/html,text/css,application/javascript,application/json
+

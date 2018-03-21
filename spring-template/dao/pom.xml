@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>parent</artifactId>
+    <groupId>com.bfd.casejoin</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>dao</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+  <name>Case Join DAO</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <!-- <webResources> <resource> <directory>${project.basedir}/lib</directory>
+            <targetPath>WEB-INF/lib</targetPath> <filtering>true</filtering> <includes>
+            <include>${project.basedir}/lib/*.jar</include> </includes> </resource> </webResources> -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

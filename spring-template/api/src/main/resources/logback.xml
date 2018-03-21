@@ -1,0 +1,61 @@
+<configuration scan="true" scanPeriod="120 seconds">
+
+	<conversionRule conversionWord="nanos"
+		converterClass="com.bfd.casejoin.utils.NanoSampleConverter" />
+
+	<!-- Simple file output -->
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>
+				[%level][%nanos] %date{yyyy-MM-dd HH:mm:ss.SSS} %logger{96}:[%line] - %msg%n
+			</pattern>
+			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
+		</encoder>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${catalina.base}/logs/web-server-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>128MB</maxFileSize>
+			<maxHistory>14</maxHistory>
+			<totalSizeCap>6GB</totalSizeCap>
+		</rollingPolicy>
+
+		<!-- Log level filter rule -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+		<!-- Safely log to the same file from multiple JVMs. Degrades performance! -->
+		<prudent>true</prudent>
+	</appender>
+
+	<!-- Console output -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder defaults to ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+		<encoder>
+			<pattern>
+				[%level][%nanos] %date{yyyy-MM-dd HH:mm:ss.SSS} %logger{96}:%line - %msg%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+
+		<!-- Log level filter rule -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+	</appender>
+
+  <logger name="org.springframework" level="WARN" additivity="true">
+  </logger>
+
+  <logger name="org.apache" level="WARN" additivity="true">
+  </logger>
+
+  <!-- Enable FILE and STDOUT appenders for all log messages. -->
+	<root level="info">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
