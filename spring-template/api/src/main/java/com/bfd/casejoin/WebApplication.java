@@ -34,7 +34,6 @@ public class WebApplication {
     factory.setMaxRequestSize("120MB");
     return factory.createMultipartConfig();
   }
-
   
   @Bean
   public MBeanExporter mBeanExporter() {
